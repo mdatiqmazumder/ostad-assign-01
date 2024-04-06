@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+      integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-2">
+        <h2 class="text-center">Calculator</h2>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="first_int" class="form-label">Enter First Int</label>
+            <input
+              type="text"
+              class="form-control"
+              id="first_int"
+              placeholder="Enter First Int"
+            />
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="operator" class="form-label">Select Operator</label>
+            <select id="operator" class="form-select">
+              <option value="+">Addition (+)</option>
+              <option value="-">Subtraction (-)</option>
+              <option value="*">Multiplication (*)</option>
+              <option value="/">Division (/)</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label for="last_int" class="form-label">Enter Last Int</label>
+            <input
+              type="number"
+              class="form-control"
+              id="last_int"
+              placeholder="Enter Last Int"
+            />
+          </div>
+        </div>
+
+        <button class="btn btn-success col-1 mt-4 ms-2 pb-2" id="calculate_btn">
+          Calculate
+        </button>
+
+        <div class="row result_section">
+          <div class="col-6 mt-4 ms-2 alert alert-primary" role="alert">
+            Click Calculate for Result!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // assign variables
+      var first_int, operator, last_int, result_section, calculate_btn;
+
+      // select click button
+      calculate_btn = document.getElementById("calculate_btn");
+      // after on click calculate button
+      calculate_btn.addEventListener("click", calculator);
+
+      // function for calculator
+      function calculator() {
+        // select values
+        first_int = document.getElementById("first_int").value;
+        operator = document.getElementById("operator").value;
+        last_int = document.getElementById("last_int").value;
+        result_section = document.querySelector(".result_section");
+
+        // validate first_int
+        if (first_int == "" || isNaN(first_int)) {
+          //change border color
+          document
+            .getElementById("first_int")
+            .setAttribute("style", "border: 1px solid red;");
+          // show error message
+          result_section.innerHTML =
+            '<div class="col-6 mt-4 ms-2 alert alert-danger" role="alert">Please enter first number.Input must be an integer.</div>';
+          // return false
+          return false;
+        }
+        //set border none if first_int is not empty
+        document
+          .getElementById("first_int")
+          .setAttribute("style", "border: 2px solid #b4d3b2;");
+
+        // validate last_int
+        if (last_int == "" || isNaN(last_int)) {
+          //change border color
+          document
+            .getElementById("last_int")
+            .setAttribute("style", "border: 1px solid red;");
+          // show error message
+          result_section.innerHTML =
+            '<div class="col-6 mt-4 ms-2 alert alert-danger" role="alert">Please enter last number.Input must be an integer.</div>';
+          // return false
+          return false;
+        }
+        //set border none if last_int is not empty
+        document
+          .getElementById("last_int")
+          .setAttribute("style", "border: 2px solid #b4d3b2;");
+
+        if (operator == "+") {
+          result = parseInt(first_int) + parseInt(last_int);
+        } else if (operator == "-") {
+          result = parseInt(first_int) - parseInt(last_int);
+        } else if (operator == "*") {
+          result = parseInt(first_int) * parseInt(last_int);
+        } else if (operator == "/") {
+          result = parseInt(first_int) / parseInt(last_int);
+        }
+
+        result_section.innerHTML =
+          '<div class="col-6 mt-4 ms-2 alert alert-success" role="alert">Result is: ' +
+          result +
+          "</div>";
+      }
+    </script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"
+      integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>
