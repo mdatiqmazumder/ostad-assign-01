@@ -11,7 +11,9 @@ class BankAccount{
     withdraw(amount){
         if(amount <= this.balance){
             this.balance = this.balance - amount;
-            console.log("Withdrawn: ", amount);
+            console.log("Withdraw: ", amount);
+        }else{
+            console.log("Withdrawn: Withdraw failed for insufficient balance.You can withdraw up to ", amount);
         }
     }
 
@@ -38,4 +40,5 @@ account2.deposit(2000);
 account2.getBalance();
 account2.withdraw(300);
 account2.getBalance();
+account2.withdraw(3000);
 account2.displayAccountInfo();
